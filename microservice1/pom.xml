@@ -17,6 +17,7 @@
     <properties>
         <java.version>21</java.version>
         <lombok.version>1.18.30</lombok.version>
+        <loki-logback-appender.version>1.6.0</loki-logback-appender.version>
     </properties>
     <dependencies>
         <dependency>
@@ -39,6 +40,17 @@
             <artifactId>core</artifactId>
             <version>0.0.1-SNAPSHOT</version>
             <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.github.loki4j</groupId>
+            <artifactId>loki-logback-appender</artifactId>
+            <version>${loki-logback-appender.version}</version>
         </dependency>
     </dependencies>
 

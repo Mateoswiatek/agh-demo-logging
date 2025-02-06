@@ -24,10 +24,9 @@ public class Resource {
     @PostMapping("/process-action")
     public ResponseEntity<String> processAction(@RequestBody Person person) {
         Thread.sleep(600);
-        log.info("Microservice2 - invoked. PersonId: {}", person.id());
+        log.atInfo().setMessage("Microservice2 - invoked. PersonId: {}").addArgument(person.id()).addKeyValue("personId", person.id()).log();
         Thread.sleep(400);
-        log.info("Microservice2 - processing.... PersonId: {}", person.id());
-
+        log.atInfo().setMessage("Microservice2 - processing... PersonId: {}").addArgument(person.id()).addKeyValue("personId", person.id()).log();
         return ResponseEntity.ok("Microservice2 - processed");
     }
 }

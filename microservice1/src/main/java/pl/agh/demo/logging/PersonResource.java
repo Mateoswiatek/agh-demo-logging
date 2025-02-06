@@ -20,7 +20,8 @@ public class PersonResource {
     @SneakyThrows
     public ResponseEntity<String> testProcess() {
         Person person = new Person(1L, "Mateusz", 23);
-        log.info("Proces1 processing... personId: {}", person.id());
+        log.atInfo().setMessage("Proces1 processing... personId: {}").addArgument(person.id()).addKeyValue("personId", person.id()).log();
+
         String url1 = "http://microservice2:8080/process-action"; // internal in docker network
 //        String url1 = "http://192.168.22.95:5002/process-action"; // external = 5002
         String url2 = "http://microservice3:8080/process-action";

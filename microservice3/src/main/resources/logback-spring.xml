@@ -1,0 +1,50 @@
+<configuration>
+
+    <configurationScanInterval>60</configurationScanInterval>
+
+    <property name="LOG_LEVEL" value="${LOG_LEVEL:DEBUG}"/>
+    <springProperty name="name" source="spring.application.name" />
+    <springProperty name="LOKI_PUSH_URL" source="spring.loki.push-url"/>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="LOKI" class="com.github.loki4j.logback.Loki4jAppender">
+        <http>
+            <url>http://loki:3100/loki/api/v1/push</url>
+        </http>
+
+        <format>
+            <label>
+                <pattern>app=${name},host=${HOSTNAME}</pattern>
+            </label>
+            <staticLabels>true</staticLabels>
+
+            <message class="com.github.loki4j.logback.JsonLayout">
+                <timestamp>
+                    <enabled>false</enabled>
+                </timestamp>
+                <customProvider class="pl.agh.demo.logging.LokiTimestampProvider"/>
+                <kvp>
+                    <noPrefix>true</noPrefix>
+                </kvp>
+                <loggerName>
+                    <fieldName>class</fieldName>
+                </loggerName>
+            </message>
+        </format>
+    </appender>
+
+    <logger name="pl.agh.demo.logging" level="${LOG_LEVEL}" additivity="false">
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="LOKI"/>
+    </logger>
+
+    <root level="INFO">
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="LOKI"/>
+    </root>
+</configuration>
