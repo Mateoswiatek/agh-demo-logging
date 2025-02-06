@@ -16,8 +16,9 @@ public class Proces3 { // NotificationService
     @Async
     @SneakyThrows
     public void processAction(Person person) {
-        Thread.sleep(1000);
+        Thread.sleep(400);
         log.info("Proces3 - invoked. PersonId: {}", person.id());
+        Thread.sleep(400);
         log.info("Proces3 - processing.... personId: {}", person.id());
     }
 }
