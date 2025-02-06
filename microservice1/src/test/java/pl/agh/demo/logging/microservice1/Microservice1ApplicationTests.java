@@ -1,10 +1,10 @@
-package pl.agh.demo.logging;
+package pl.agh.demo.logging.microservice1;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class DemologgingApplicationTests {
+class Microservice1ApplicationTests {
 
     @Test
     void contextLoads() {

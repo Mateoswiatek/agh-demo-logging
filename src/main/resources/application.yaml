@@ -1,8 +1,0 @@
-spring:
-  application:
-    name: demologging
-
-logging:
-  level:
-    pl.agh.demo.logging: debug
-    root: info
