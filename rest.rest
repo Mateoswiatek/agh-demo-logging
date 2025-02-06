@@ -1,0 +1,23 @@
+
+### Microservice 1
+GET localhost:5001/test
+
+### Microservice 2
+POST http://localhost:5002/process-action
+Content-Type: application/json
+
+{
+  "id": 1,
+  "name": "Mateusz",
+  "age": 23
+}
+
+### Microservice 3
+POST http://localhost:5003/process-action
+Content-Type: application/json
+
+{
+  "id": 1,
+  "name": "Mateusz",
+  "age": 23
+}

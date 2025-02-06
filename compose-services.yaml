@@ -1,0 +1,47 @@
+name: agh-demo-logging
+
+networks:
+  agh-demo-logging:
+    external: true
+
+services:
+  microservice1:
+    image: agh-demo-logging.microservice1
+    container_name: agh-demo-logging.microservice1
+    pull_policy:
+      build
+    build:
+      context: ./microservice1
+      dockerfile: Dockerfile
+    ports:
+      - "5001:8080"
+    networks:
+      - agh-demo-logging
+#    environment:
+#      logging.level.org.springframework.web: DEBUG
+
+  microservice2:
+    image: agh-demo-logging.microservice2
+    container_name: agh-demo-logging.microservice2
+    pull_policy:
+      build
+    build:
+      context: ./microservice2
+      dockerfile: Dockerfile
+    ports:
+      - "5002:8080"
+    networks:
+      - agh-demo-logging
+
+  microservice3:
+    image: agh-demo-logging.microservice3
+    container_name: agh-demo-logging.microservice3
+    pull_policy:
+      build
+    build:
+      context: ./microservice3
+      dockerfile: Dockerfile
+    ports:
+      - "5003:8080"
+    networks:
+      - agh-demo-logging
