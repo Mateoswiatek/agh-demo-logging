@@ -21,8 +21,13 @@ public class PersonResource {
     public ResponseEntity<String> testProcess() {
         Person person = new Person(1L, "Mateusz", 23);
         log.info("Proces1 processing... personId: {}", person.id());
-        String url1 = "http://localhost:5002/process-action";
-        String url2 = "http://localhost:5003/process-action";
+        String url1 = "http://microservice2:8080/process-action"; // internal in docker network
+//        String url1 = "http://192.168.22.95:5002/process-action"; // external = 5002
+        String url2 = "http://microservice3:8080/process-action";
+
+//        ResponseEntity<String> response =  restTemplate.postForEntity(url1, person, String.class);
+//        log.info("Response.statusCode: {}", response.getStatusCode());
+//        log.info("Response.body: {}", response.getBody());
 
         CompletableFuture<ResponseEntity<String>> future1 = CompletableFuture.supplyAsync(() ->
                 restTemplate.postForEntity(url1, person, String.class));
